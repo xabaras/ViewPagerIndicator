@@ -1,15 +1,17 @@
 package it.xabaras.android.viewpagerindicator.sample.adapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import it.xabaras.android.viewpagerindicator.sample.R;
+
 /**
  * Created by Paolo Montalto on 19/07/16.
- * Copyright (c) 2016 TwoMenStudio. All rights reserved.
  */
 public class ViewPagerAdapter extends PagerAdapter {
     private final Context context;
@@ -30,6 +32,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         view.setLayoutParams(params);
         view.setGravity(Gravity.CENTER);
         view.setText("View " + (position + 1));
+        view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPageBackground));
         container.addView(view);
         return view;
     }

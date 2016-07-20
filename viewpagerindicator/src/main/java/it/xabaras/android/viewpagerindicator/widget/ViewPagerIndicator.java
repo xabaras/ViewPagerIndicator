@@ -14,7 +14,10 @@ import it.xabaras.android.viewpagerindicator.R;
 
 /**
  * Created by Paolo Montalto on 19/07/16.
- * Copyright (c) 2016 TwoMenStudio. All rights reserved.
+ */
+
+/**
+ * This is simple page indicator for android ViewPager.
  */
 public class ViewPagerIndicator extends RadioGroup {
     private static final String TAG = "ViewPagerIndicator";
@@ -22,10 +25,19 @@ public class ViewPagerIndicator extends RadioGroup {
     private int mItemDividerWidth;
     private int mButtonDrawable;
 
+    /**
+     * Default Constructor
+     * @param context a Context
+     */
     public ViewPagerIndicator(Context context) {
         this(context, null);
     }
 
+    /**
+     * Constructor with attributes
+     * @param context a Context
+     * @param attrs an Attribute set
+     */
     public ViewPagerIndicator(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -53,6 +65,11 @@ public class ViewPagerIndicator extends RadioGroup {
 
     }
 
+    /**
+     * Initialize ViewPagerIndicator with a properly set up ViewPager
+     * @param viewPager an instance of android.support.v4.view.ViewPager
+     * @throws IllegalStateException if no adapter has been provided to the viewPager
+     */
     public void initWithViewPager(ViewPager viewPager) throws IllegalStateException {
         if ( viewPager == null ) return;
 
@@ -69,6 +86,9 @@ public class ViewPagerIndicator extends RadioGroup {
         }
     }
 
+    /**
+     * Add page indicators based on the attached ViewPager
+     */
     private void addViews() {
         try {
             if ( mViewPager == null || mViewPager.getAdapter() == null || mViewPager.getAdapter().getCount() == 0 ) return;
@@ -77,6 +97,7 @@ public class ViewPagerIndicator extends RadioGroup {
             firstItem.setButtonDrawable(mButtonDrawable);
             ViewPagerIndicator.LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             firstItem.setLayoutParams(params);
+            firstItem.setClickable(false);
             addView(firstItem);
             for ( int i=1; i<mViewPager.getAdapter().getCount(); i++ ) {
                 RadioButton item = new AppCompatRadioButton(getContext());
@@ -85,6 +106,7 @@ public class ViewPagerIndicator extends RadioGroup {
                 params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
                 params.setMargins(mItemDividerWidth, 0, 0, 0);
                 item.setLayoutParams(params);
+                item.setClickable(false);
                 addView(item);
             }
             check(firstItem.getId());
@@ -96,9 +118,7 @@ public class ViewPagerIndicator extends RadioGroup {
 
     private ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
         @Override
         public void onPageSelected(int position) {
@@ -110,11 +130,14 @@ public class ViewPagerIndicator extends RadioGroup {
         }
 
         @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
+        public void onPageScrollStateChanged(int state) {}
     };
 
+    /**
+     * Always get a message for an exception
+     * @param e an Exception
+     * @return a String describing the Exception
+     */
     private String getMessageFor(Exception e) {
         if ( e == null ) return TAG + ": No Message.";
 
