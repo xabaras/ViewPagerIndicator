@@ -1,5 +1,6 @@
 # ViewPagerIndicator#
 Is a simple page indicator for android ViewPager.
+
 It is based upon AppCompat library so you must use android.support.v4.view.ViewPager
 
 ## How do I get set up? ##
@@ -17,7 +18,7 @@ or Maven
 </dependency>
 ```
 
-Or download the [latest AAR](https://github.com/xabaras/ViewPagerIndicator/releases/latest) and add it to your project's libraries.
+Or download the [latest AAR](https://bintray.com/xabaras/maven/ViewPagerIndicator/_latestVersion) and add it to your project's libraries.
 
 ## Usage ##
 You just have to add ViewPagerIndicator to your xml layout the usual way
