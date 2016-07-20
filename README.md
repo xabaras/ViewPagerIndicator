@@ -3,6 +3,8 @@ Is a simple page indicator for android ViewPager.
 
 It is based upon AppCompat library so you must use android.support.v4.view.ViewPager
 
+!(https://xabaras.github.io/ViewPagerIndicator/img/ViewPagerIndicator_dark.png) !(https://xabaras.github.io/ViewPagerIndicator/img/ViewPagerIndicator_light.png)
+
 ## How do I get set up? ##
 Get it via Gradle
 ```groovy
