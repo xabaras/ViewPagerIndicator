@@ -3,6 +3,7 @@ Is a simple page indicator for android ViewPager.
 
 It is based upon AppCompat library so you must use android.support.v4.view.ViewPager
 
+[ ![Methods count and size](https://img.shields.io/badge/Methods and size-core: 46 | deps: 15054 | 26 KB-e91e63.svg)](http://www.methodscount.com/?lib=it.xabaras.android%3Aviewpagerindicator%3A0.1.0)
 ![Dark theme](https://xabaras.github.io/ViewPagerIndicator/img/ViewPagerIndicator_dark.png) ![Light theme](https://xabaras.github.io/ViewPagerIndicator/img/ViewPagerIndicator_light.png)
 
 ## How do I get set up? ##
