@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ViewPagerIndicator">
+        <attr name="itemDividerWidth" format="dimension"/>
+        <attr name="defaultIndicatorTheme" format="enum">
+            <enum name="dark" value="0"/>
+            <enum name="light" value="1" />
+        </attr>
+        <attr name="pagerIndicatorDrawable" format="reference" />
+    </declare-styleable>
+</resources>
