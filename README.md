@@ -72,6 +72,7 @@ e.g.
 
 ##### itemDividerWidth #####
 Defines the distance between two indicator items in DPs
+
 e.g.
 ```xml
 <it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator
@@ -83,8 +84,11 @@ e.g.
 
 ##### pagerIndicatorDrawable #####
 Defines the indicator item drawable resource.
-Overrides the "defaultIndicatorTheme" setting sonyou should provide a proper drawable.
+
+This attribute overrides the "defaultIndicatorTheme" setting so you should provide a proper drawable.
+
 You should define a selector drawable handling the default and checked status of the item.
+
 e.g.
 ```xml
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
