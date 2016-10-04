@@ -92,6 +92,7 @@ public class ViewPagerIndicator extends RadioGroup {
     private void addViews() {
         try {
             if ( mViewPager == null || mViewPager.getAdapter() == null || mViewPager.getAdapter().getCount() == 0 ) return;
+            removeAllViews();
             RadioButton firstItem = new AppCompatRadioButton(getContext());
             firstItem.setText("");
             firstItem.setButtonDrawable(mButtonDrawable);
