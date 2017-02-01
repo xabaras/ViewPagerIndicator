@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="default_indicator_on">#FFFFFF</color>
+    <color name="default_indicator_off">#333333</color>
+    <color name="default_indicator_light_on">#111111</color>
+    <color name="default_indicator_light_off">#777777</color>
+</resources>

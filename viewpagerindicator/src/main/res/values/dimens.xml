@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="default_item_divider_width">5dp</dimen>
+    <dimen name="default_item_radius">5dp</dimen>
 </resources>

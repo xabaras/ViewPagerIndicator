@@ -2,12 +2,16 @@ package it.xabaras.android.viewpagerindicator.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.StateListDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import it.xabaras.android.viewpagerindicator.R;
@@ -23,7 +27,10 @@ public class ViewPagerIndicator extends RadioGroup {
     private static final String TAG = "ViewPagerIndicator";
     private ViewPager mViewPager;
     private int mItemDividerWidth;
-    private int mButtonDrawable;
+    private Drawable mButtonDrawable;
+    private int mItemRadius;
+    private int mItemSelectedColor;
+    private int mItemUnselectedColor;
 
     /**
      * Default Constructor
@@ -50,19 +57,60 @@ public class ViewPagerIndicator extends RadioGroup {
                     R.styleable.ViewPagerIndicator,
                     0, 0);
 
+            mItemRadius = getResources().getDimensionPixelSize(R.dimen.default_item_radius);
+            mItemRadius = a.getDimensionPixelSize(R.styleable.ViewPagerIndicator_itemRadius, mItemRadius);
             mItemDividerWidth = a.getDimensionPixelSize(R.styleable.ViewPagerIndicator_itemDividerWidth, getResources().getDimensionPixelSize(R.dimen.default_item_divider_width));
             int theme = a.getInt(R.styleable.ViewPagerIndicator_defaultIndicatorTheme, 0);
             if ( theme == 0 ) {
-                mButtonDrawable = R.drawable.pager_indicator;
+                mItemSelectedColor = ContextCompat.getColor(getContext(), R.color.default_indicator_on);
+                mItemUnselectedColor = ContextCompat.getColor(getContext(), R.color.default_indicator_off);
             } else {
-                mButtonDrawable = R.drawable.pager_indicator_light;
+                mItemSelectedColor = ContextCompat.getColor(getContext(), R.color.default_indicator_light_on);
+                mItemUnselectedColor = ContextCompat.getColor(getContext(), R.color.default_indicator_light_off);
             }
-            mButtonDrawable = a.getResourceId(R.styleable.ViewPagerIndicator_pagerIndicatorDrawable, mButtonDrawable);
+
+            mItemSelectedColor = a.getColor(R.styleable.ViewPagerIndicator_itemSelectedColor, mItemSelectedColor);
+            mItemUnselectedColor = a.getColor(R.styleable.ViewPagerIndicator_itemUnselectedColor, mItemUnselectedColor);
+
+            mButtonDrawable = getSelectorDrawable();
+
+            int drawableResId = a.getResourceId(R.styleable.ViewPagerIndicator_pagerIndicatorDrawable, 0);
+            if (drawableResId != 0 ) {
+                mButtonDrawable = ContextCompat.getDrawable(getContext(), drawableResId);
+            }
         } catch(Exception e) {
             Log.e(TAG, getMessageFor(e));
         }
 
 
+    }
+
+    /**
+     * Create a StateListDrawable for the pager indicator
+     *
+     * @return a proper StateListDrawable
+     */
+    private StateListDrawable getSelectorDrawable() {
+        StateListDrawable d = null;
+
+        try {
+            d = new StateListDrawable();
+            ShapeDrawable selectedDrawable = new ShapeDrawable(new OvalShape());
+            selectedDrawable.getPaint().setColor(mItemSelectedColor);
+            selectedDrawable.setIntrinsicHeight(mItemRadius * 2);
+            selectedDrawable.setIntrinsicWidth(mItemRadius * 2);
+            ShapeDrawable unselectedDrawable = new ShapeDrawable(new OvalShape());
+            unselectedDrawable.getPaint().setColor(mItemUnselectedColor);
+            unselectedDrawable.setIntrinsicHeight(mItemRadius * 2);
+            unselectedDrawable.setIntrinsicWidth(mItemRadius * 2);
+
+            d.addState(new int[]{android.R.attr.state_checked}, selectedDrawable);
+            d.addState(new int[]{}, unselectedDrawable);
+        } catch(Exception e) {
+            Log.e(TAG, getMessageFor(e));
+        }
+
+        return d;
     }
 
     /**
@@ -93,17 +141,17 @@ public class ViewPagerIndicator extends RadioGroup {
         try {
             if ( mViewPager == null || mViewPager.getAdapter() == null || mViewPager.getAdapter().getCount() == 0 ) return;
             removeAllViews();
-            RadioButton firstItem = new AppCompatRadioButton(getContext());
+            AppCompatRadioButton firstItem = new AppCompatRadioButton(getContext());
             firstItem.setText("");
-            firstItem.setButtonDrawable(mButtonDrawable);
+            firstItem.setButtonDrawable(mButtonDrawable.getConstantState().newDrawable());
             ViewPagerIndicator.LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             firstItem.setLayoutParams(params);
             firstItem.setClickable(false);
             addView(firstItem);
             for ( int i=1; i<mViewPager.getAdapter().getCount(); i++ ) {
-                RadioButton item = new AppCompatRadioButton(getContext());
+                AppCompatRadioButton item = new AppCompatRadioButton(getContext());
                 item.setText("");
-                item.setButtonDrawable(mButtonDrawable);
+                item.setButtonDrawable(mButtonDrawable.getConstantState().newDrawable());
                 params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
                 params.setMargins(mItemDividerWidth, 0, 0, 0);
                 item.setLayoutParams(params);
