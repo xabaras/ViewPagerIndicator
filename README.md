@@ -1,4 +1,4 @@
-# ViewPagerIndicator#
+# ViewPagerIndicator
 Is a simple page indicator for android ViewPager.
 
 It is based upon AppCompat library so you must use android.support.v4.view.ViewPager
