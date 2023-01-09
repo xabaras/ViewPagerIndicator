@@ -1,14 +1,18 @@
-apply plugin: 'com.android.library'
+import com.vanniktech.maven.publish.SonatypeHost
+
+plugins {
+    id 'com.android.library'
+    id "com.vanniktech.maven.publish" version "0.23.1"
+}
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 23
-        versionCode 3
-        versionName "1.0"
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 5
+        versionName "1.0.1"
     }
     buildTypes {
         release {
@@ -19,31 +23,41 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.13.2'
 }
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'ViewPagerIndicator'
+mavenPublishing {
+    coordinates("it.xabaras.android", "viewpagerindicator", "1.0.1")
 
-    publishedGroupId = 'it.xabaras.android'
-    libraryName = 'ViewPagerIndicator'
-    artifact = 'viewpagerindicator'
+    pom {
+        name = "ViewPagerIndicator"
+        description = "A simple page indicator for android ViewPager."
+        inceptionYear = "2016"
+        url = "https://github.com/xabaras/ViewPagerIndicator"
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            }
+        }
+        developers {
+            developer {
+                id = "xabaras"
+                name = "Paolo Montalto"
+                url = "https://github.com/xabaras/"
+                email = "p.montalto@xabaras.it"
+            }
+        }
+        scm {
+            url = "https://github.com/xabaras/ViewPagerIndicator/"
+            connection = "scm:git:git://github.com/xabaras/ViewPagerIndicator.git"
+            developerConnection = "scm:git:ssh://git@github.com/xabaras/ViewPagerIndicator.git"
+        }
+    }
 
-    libraryDescription = 'A simple page indicator for android ViewPager.'
-
-    siteUrl = 'https://github.com/xabaras/ViewPagerIndicator'
-    gitUrl = 'https://github.com/xabaras/ViewPagerIndicator.git'
-
-    libraryVersion = '1.0'
-
-    developerId = 'xabaras'
-    developerName = 'Paolo Montalto'
-    developerEmail = 'p.montalto@xabaras.it'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+    publishToMavenCentral(SonatypeHost.DEFAULT)
+    signAllPublications()
 }
