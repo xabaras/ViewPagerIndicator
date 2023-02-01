@@ -13,7 +13,7 @@ Get it via Gradle
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/it.xabaras.android/viewpagerindicator/badge.svg?style=flat&gav=true&version=2.0)](https://central.sonatype.dev/artifact/it.xabaras.android/viewpagerindicator/2.0)
 
 ```groovy
-compile 'it.xabaras.android:viewpagerindicator:2.0'
+implementation 'it.xabaras.android:viewpagerindicator:2.0'
 ```
 or Maven
 ```xml
