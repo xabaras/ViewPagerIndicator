@@ -5,20 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="it.xabaras.android.viewpagerindicator.sample.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/viewPagerIndicator"/>
+        android:layout_above="@+id/viewPagerIndicator"
+        android:orientation="horizontal"
+    />
 
-    <it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator
+    <it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator2
         android:id="@+id/viewPagerIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

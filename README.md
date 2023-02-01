@@ -1,7 +1,7 @@
 # ViewPagerIndicator
-Is a simple page indicator for android ViewPager.
+Is a simple page indicator for android ViewPager2.
 
-It is based upon AppCompat library so you must use android.support.v4.view.ViewPager
+It is based upon AndroidX so you must use androidx.viewpager2.widget.ViewPager2
 
 [ ![Download](https://api.bintray.com/packages/xabaras/maven/ViewPagerIndicator/images/download.svg)](https://bintray.com/xabaras/maven/ViewPagerIndicator/_latestVersion)
 
@@ -9,22 +9,46 @@ It is based upon AppCompat library so you must use android.support.v4.view.ViewP
 
 ## How do I get set up? ##
 Get it via Gradle
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/it.xabaras.android/viewpagerindicator/badge.svg?style=flat&gav=true&version=2.0)](https://central.sonatype.dev/artifact/it.xabaras.android/viewpagerindicator/2.0)
+
 ```groovy
-compile 'it.xabaras.android:viewpagerindicator:1.0'
+compile 'it.xabaras.android:viewpagerindicator:2.0'
 ```
 or Maven
 ```xml
 <dependency>
   <groupId>it.xabaras.android</groupId>
   <artifactId>viewpagerindicator</artifactId>
-  <version>1.0</version>
+  <version>2.0</version>
   <type>pom</type>
 </dependency>
 ```
 
 Or download the [latest AAR](https://bintray.com/xabaras/maven/ViewPagerIndicator/_latestVersion) and add it to your project's libraries.
 
+N.B. Since version 2.0 you will have ViewPagerIndicator2 class which is based on ViewPager2 from AndroidX
+
 ## Usage ##
+You just have to add ViewPagerIndicator to your xml layout the usual way
+
+```xml
+<it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator2
+        android:id="@+id/viewPagerIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" />
+```
+
+and bind it to your ViewPager in your code
+
+```kotlin
+viewPagerIndicator.initWithViewPager(viewPager)
+```
+
+where viewPager is an instance of androidx.viewpager2.widget.ViewPager2 whose adapter has been already set.
+
+## Usage 1.x ##
 You just have to add ViewPagerIndicator to your xml layout the usual way
 
 ```xml
@@ -34,7 +58,7 @@ You just have to add ViewPagerIndicator to your xml layout the usual way
         android:layout_height="wrap_content" />
 ```
 
-and bind it to your ViewPager in your code
+and bind it to your android.support.v4.view.ViewPager in your code
 
 ```java
 viewPagerIndicator.initWithViewPager(viewPager);
@@ -48,14 +72,12 @@ You can customize the appearance of the ViewPagerIndicator by adding some attrib
 e.g.
 
 ```xml
-<it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator
+<it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator2
         android:id="@+id/viewPagerIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_alignParentBottom="true"
         app:itemDividerWidth="8dp"
-        app:defaultIndicatorTheme="light"/>
+        app:defaultIndicatorTheme="light" />
 ```
 
 Just use the "app:" prefix to use the following attributes:
@@ -65,11 +87,11 @@ Can take two values "dark" (default) and "light" to match the app theme.
 
 e.g.
 ```xml
-<it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator
+<it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator2
         android:id="@+id/viewPagerIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:defaultIndicatorTheme="light"/>
+        app:defaultIndicatorTheme="light" />
 ```
 
 ##### itemDividerWidth #####
@@ -77,7 +99,7 @@ Defines the distance between two indicator items in DPs
 
 e.g.
 ```xml
-<it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator
+<it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator2
         android:id="@+id/viewPagerIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -89,7 +111,7 @@ Sets the pager indicator item's radius (e.g. if you want an 8dp baloon you have 
 
 e.g.
 ```xml
-<it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator
+<it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator2
         android:id="@+id/viewPagerIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -100,7 +122,7 @@ e.g.
 You can specify selected/unselected colors for the indicator items by setting these two attributes.
 e.g.
 ```xml
-<it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator
+<it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator2
         android:id="@+id/viewPagerIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

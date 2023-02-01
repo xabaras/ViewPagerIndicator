@@ -1,16 +1,17 @@
 package it.xabaras.android.viewpagerindicator.sample;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import androidx.viewpager2.widget.ViewPager2;
 
 import it.xabaras.android.viewpagerindicator.sample.adapter.ViewPagerAdapter;
-import it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator;
+import it.xabaras.android.viewpagerindicator.widget.ViewPagerIndicator2;
 
 public class MainActivity extends AppCompatActivity {
-    private ViewPager viewPager;
-    private ViewPagerIndicator viewPagerIndicator;
+    private ViewPager2 viewPager;
+    private ViewPagerIndicator2 viewPagerIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +20,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        viewPagerIndicator = (ViewPagerIndicator) findViewById(R.id.viewPagerIndicator);
+        viewPager = (ViewPager2) findViewById(R.id.viewPager);
+        viewPagerIndicator = (ViewPagerIndicator2) findViewById(R.id.viewPagerIndicator);
         ViewPagerAdapter adapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(adapter);
-        viewPager.setPageMargin(getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin));
         viewPagerIndicator.initWithViewPager(viewPager);
     }
 }
